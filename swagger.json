@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API projeto depressão",
+    "description": "API para CRUD",
+    "termsOfService": "",
+    "contact": {
+      "email": "tantantaon1@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3005/hamburguer",
+      "description": "API de teste"
+    },
+    {
+      "url": "teste",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/all-hamburguer": {
+      "get": {
+        "summary": "Lista de todas as hamburguer",
+        "description": "Rota responsável por listar todas as hamburguer",
+        "tags": ["hamburguer"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/hamburguer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/one-hamburguer/{id}": {
+      "get": {
+        "summary": "Busca uma hamburguer pelo ID",
+        "description": "Rota responsável por listar uma hamburguer pelo ID",
+        "tags": ["hamburguer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da hamburguer para busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/hamburguer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-hamburguer": {
+      "post": {
+        "summary": "Cadastrar uma hamburguer",
+        "description": "Rota responsável por cadastrar uma hamburguer",
+        "tags": ["hamburguer"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/hamburguer"
+              },
+              "examples": {
+                "hamburguer": {
+                  "value": {
+                    "sinopse": "Ela costumava ser um assalariado em um escritório de elite do Japão mas renasceu como uma garotinha por causa de um deus colérico. Seu nome é Tanya Degurechov e, priorizando a otimização e o avanço acima de tudo, ela se tornará a entidade mais perigosa dentre os feiticeiros do Exército Imperial.",
+                    "foto": "./assets/img/tanya.jpg",
+                    "nome": "Youjo Senki",
+                    "nota": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/hamburguer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update-hamburguer/{id}": {
+      "put": {
+        "summary": "Editar uma hamburguer pelo ID",
+        "description": "Rota responsável por editar uma hamburguer pelo ID",
+        "tags": ["hamburguer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da hamburguer para busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schemas": {
+                "$ref": "#/components/schemas/hamburguer"
+              },
+              "examples": {
+                "hamburguer": {
+                  "value": {
+                    "sinopse": "Ela costumava ser um assalariado em um escritório de elite do Japão mas renasceu como uma garotinha por causa de um deus colérico. Seu nome é Tanya Degurechov e, priorizando a otimização e o avanço acima de tudo, ela se tornará a entidade mais perigosa dentre os feiticeiros do Exército Imperial.",
+                    "foto": "./assets/img/tanya.jpg",
+                    "nome": "Youjo Senki Editado",
+                    "nota": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/hamburguer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete-hamburguer/{id}": {
+      "delete": {
+        "summary": "Apagar uma hamburguer pelo ID",
+        "description": "Rota responsável por deletar uma hamburguer pelo ID",
+        "tags": ["hamburguer"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da hamburguer para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/all-cart": {
+      "get": {
+        "summary": "Lista de todos os itens do carrinho",
+        "description": "Rota responsável por listar todos os itens do carrinho",
+        "tags": ["Cart"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-cart": {
+      "post": {
+        "summary": "Cadastrar vários itens no carrinho",
+        "description": "Rota responsável por cadastrar vários itens no carrinho",
+        "tags": ["Cart"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schemas": {
+                "$ref": "#/components/schemas/Cart"
+              },
+              "examples": {
+                "Cart": {
+                  "value": [
+                    {
+                      "hamburguerId": "625f2080528b05fe8cb2154a",
+                      "quantidade": 5
+                    },
+                    {
+                      "hamburguerId": "625f2080528b05fe8cb2154b",
+                      "quantidade": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finish-cart": {
+      "delete": {
+        "summary": "Apagar todos os itens do carrinho",
+        "description": "Rota responsável por apagar todos os itens do carrinho",
+        "tags": ["Cart"],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "hamburguer": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "foto": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        }
+      },
+      "Cart": {
+        "type": "object",
+        "properties": {
+          "hamburguerId": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
