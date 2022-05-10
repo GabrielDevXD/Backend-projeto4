@@ -24,7 +24,11 @@ router.put(
   validObjectBody,
   controllerRoupas.updateroupasController,
 );
-router.delete('/delete/:id', validId, controllerRoupas.deleteroupasController);
+router.delete(
+  '/delete-hamburguer/:id',
+  validId,
+  controllerRoupas.deleteroupasController,
+);
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 router.get('/all-cart', controllerCart.findAllCartController);
