@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { validId, validObjectBody } = require('../middlewares/Middlewares');
+const { validId, validObjectBody } = require('../Middlewares/Middlewares');
 const controllerCart = require('../controllers/cart.controller');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../../swagger.json');
