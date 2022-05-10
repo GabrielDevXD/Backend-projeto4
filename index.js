@@ -3,7 +3,7 @@ const cors = require('cors');
 const router = require('./src/routes/roupas.routes');
 const connectToDatabase = require('./src/database/database');
 
-const port = 3005;
+const port = process.env.PORT || 3005;
 const app = express();
 
 app.use(express.json());
